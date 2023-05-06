@@ -34,3 +34,4 @@ SUM(review_count) AS review_cnt
 FROM cte
 GROUP BY category
 ORDER BY review_cnt DESC;
+--The UNNEST function takes an ARRAY and returns a table with a row for each element in the ARRAY.
