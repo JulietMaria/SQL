@@ -2,6 +2,7 @@
 
 --https://python.plainenglish.io/crack-sql-interview-question-unnest-string-to-array-1b75578cbe75 
 
+---MySql
 with recursive num (n) as (
 -- create list 1 - 15
     select 1
@@ -19,3 +20,17 @@ on
     n <= char_length(categories) - char_length(replace(categories,';','')) + 1
 group by
     category;
+
+--SQL
+WITH cte AS(
+SELECT
+UNNEST(STRING_TO_ARRAY(categories, ';')) AS category ,
+review_count
+FROM yelp_business
+)
+SELECT
+category,
+SUM(review_count) AS review_cnt
+FROM cte
+GROUP BY category
+ORDER BY review_cnt DESC;
